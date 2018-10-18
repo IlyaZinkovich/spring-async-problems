@@ -1,11 +1,14 @@
 package io.github.ilyazinkovich.spring.async.bad;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -57,5 +60,12 @@ public class AsyncObjectTest {
   @Test
   void testAsyncMethodThrowingException() {
     assertDoesNotThrow(() -> asyncObject.asyncMethodThrowingException());
+  }
+
+  @Test
+  void test() throws ExecutionException, InterruptedException {
+    final Future<Integer> futureResult = asyncObject.asyncMethodWithFutureReturnType();
+    assertEquals(Integer.valueOf(1), futureResult.get());
+    assertTrue(testExecutor.isCompleted());
   }
 }
