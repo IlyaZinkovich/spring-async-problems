@@ -1,6 +1,5 @@
 package io.github.ilyazinkovich.spring.async.good;
 
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -36,7 +35,7 @@ public class AsyncObject {
   public CompletableFuture<Integer> asyncMethodThrowingException() {
     return CompletableFuture.runAsync(() -> System.out.println("execute asynchronously"))
         .thenApply(noResult -> {
-          if (new Random().nextBoolean()) {
+          if (true) {
             throw new RuntimeException("async exception");
           } else {
             return 1;
