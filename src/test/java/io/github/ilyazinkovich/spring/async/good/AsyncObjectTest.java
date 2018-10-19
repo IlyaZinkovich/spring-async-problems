@@ -51,7 +51,9 @@ public class AsyncObjectTest {
   }
 
   @Test
-  void testAsyncMethodThrowingException() {
-    assertDoesNotThrow(asyncObject::asyncMethodThrowingException);
+  void testAsyncMethodThrowingException() throws ExecutionException, InterruptedException {
+    final CompletableFuture<Integer> result =
+        assertDoesNotThrow(asyncObject::asyncMethodThrowingException);
+    assertEquals(Integer.valueOf(1), result.get());
   }
 }
