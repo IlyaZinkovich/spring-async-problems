@@ -44,8 +44,8 @@ public class AsyncObjectTest {
   }
 
   @Test
-  void testAsyncMethodWithRawReturnType() throws ExecutionException, InterruptedException {
-    final CompletableFuture<Integer> result = asyncObject.asyncMethodWithRawReturnType();
+  void testAsyncMethodWithReturnValue() throws ExecutionException, InterruptedException {
+    final CompletableFuture<Integer> result = asyncObject.asyncMethodWithReturnValue();
     assertTrue(testExecutor.isCompleted());
     assertEquals(Integer.valueOf(1), result.get());
   }

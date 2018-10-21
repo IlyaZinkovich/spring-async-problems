@@ -27,9 +27,9 @@ public class AsyncObject {
     explicitlyAsyncMethod().thenRun(() -> System.out.println("callback"));
   }
 
-  public CompletableFuture<Integer> asyncMethodWithRawReturnType() {
+  public CompletableFuture<Integer> asyncMethodWithReturnValue() {
     return CompletableFuture.runAsync(() -> System.out.println("execute asynchronously"), executor)
-        .thenApplyAsync(noResult -> 1);
+        .thenApply(noResult -> 1);
   }
 
   public CompletableFuture<Integer> asyncMethodThrowingException() {
